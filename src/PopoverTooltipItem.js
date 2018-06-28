@@ -1,69 +1,47 @@
-// @flow
+import React from 'react';
+import ReactNative from 'react-native';
 
-import type {
-  StyleObj,
-} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
-
-import * as React from 'react';
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
+const {
   Text,
-  ViewPropTypes,
-} from 'react-native';
-import PropTypes from 'prop-types';
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} = ReactNative;
 
-export type Label = string | () => React.Node;
-export const labelPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.func,
+const StylePropType = React.PropTypes.oneOfType([
+  React.PropTypes.array,
+  React.PropTypes.object,
 ]);
 
-type Props = {
-  onPress: (userCallback: () => void) => void,
-  onPressUserCallback: () => void,
-  label: Label,
-  containerStyle: ?StyleObj,
-  labelStyle: ?StyleObj,
+const PopoverTooltipItem = ({ onPress, containerStyle, label, labelStyle }) => (
+  <TouchableOpacity style={[styles.container, containerStyle]} onPress={onPress}>
+    {
+      typeof label === 'string' ?
+        <Text style={[labelStyle]}>{label}</Text> :
+        label()
+    }
+  </TouchableOpacity>
+);
+
+PopoverTooltipItem.propTypes = {
+  onPress: React.PropTypes.func.isRequired,
+  label: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.func,
+  ]).isRequired,
+  containerStyle: StylePropType,
+  labelStyle: StylePropType,
 };
-class PopoverTooltipItem extends React.PureComponent<Props> {
 
-  static propTypes = {
-    onPress: PropTypes.func.isRequired,
-    onPressUserCallback: PropTypes.func.isRequired,
-    label: labelPropType.isRequired,
-    containerStyle: ViewPropTypes.style,
-    labelStyle: Text.propTypes.style,
-  };
-  static defaultProps = {
-    labelStyle: null,
-    containerStyle: null,
-  };
+PopoverTooltipItem.defaultProps = {
+  labelStyle: null,
+  containerStyle: null,
+};
 
-  render() {
-    const label = typeof this.props.label === 'string'
-      ? <Text style={this.props.labelStyle}>{this.props.label}</Text>
-      : this.props.label();
-    return (
-      <View style={[styles.itemContainer, this.props.containerStyle]}>
-        <TouchableOpacity onPress={this.onPress}>
-          {label}
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
-  onPress = () => {
-    this.props.onPress(this.props.onPressUserCallback);
-  }
-
-}
+export default PopoverTooltipItem;
 
 const styles = StyleSheet.create({
-  itemContainer: {
+  container: {
     padding: 10,
   },
 });
-
-export default PopoverTooltipItem;
