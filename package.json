@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/robsoncoelho/react-native-popover-tooltip/issues"
   },
-  "homepage": "https://github.com/robsoncoelho/react-native-popover-tooltip"
+  "homepage": "https://github.com/robsoncoelho/react-native-popover-tooltip",
   "dependencies": {
     "invariant": "^2.2.2",
     "prop-types": "^15.6.0"
