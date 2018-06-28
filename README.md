@@ -52,8 +52,8 @@ class App extends React.Component {
               onPress: () => {}
             }
           ]}
-          // animationType='timming'
-          // using the default timming animation
+          // animationType='timing'
+          // using the default timing animation
           />
 
         <View style={{height:40}}/>
@@ -155,9 +155,9 @@ class App extends React.Component {
               onPress: () => {}
             }
           ]}
-          // animationType='timming'
-          // using the default timming animation
-          timmingConfig={{duration: 1000}}
+          // animationType='timing'
+          // using the default timing animation
+          timingConfig={{duration: 1000}}
           opacityChangeDuration={1000} />
 
         <View style={{height: 40}}/>
@@ -198,6 +198,8 @@ class App extends React.Component {
 | springConfig | `Object` | {tension: 100, friction: 7} | Configuration of spring animation. Attributes tension and friction control the behavior of the spring bumper effect.
 | opacityChangeDuration | `number` | 200 | Duration of opacity change of the overlay, during both appearance and dispearance.
 | buttonComponentExpandRatio | `number` | 1.0 | Ratio of button component expansion after tooltip poped up.
+| setBelow | `Boolean` | false | Sets the default position of the tooltip to appear below the intended target.
+| triangleOffset | `Number` | 0 | Number of pixels to offset triangle from center. Positive numbers will push right. Negative Numbers will push left.
 
 ## Methods:
 
