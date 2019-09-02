@@ -130,7 +130,7 @@ class PopoverTooltip extends React.Component {
                         tooltip_container_x_final = Math.max(10, tooltip_container_x_final);
                         let tooltip_container_y_final = pageY - tooltip_container_height - 5;
                         let tooltip_triangle_down = true;
-                        if (pageY - tooltip_container_height - 5 < 0) {
+                        if (pageY - tooltip_container_height - 5 < 100 || this.props.setBelow) {
                           tooltip_container_y_final = pageY + height + 5;
                           tooltip_triangle_down = false;
                         }
